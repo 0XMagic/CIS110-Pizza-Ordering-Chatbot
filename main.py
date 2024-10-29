@@ -1,14 +1,20 @@
 SALES_TAX = 1.1
-CREATOR = "a rabbit"    #since this repository is public, I am not using my real name
-def main():
+CREATOR = "a rabbit"  #since this repository is public, I am not using my real name
 
+
+def main():
 	username = input("Enter name:\t")
+	while not username:
+		username = input("Name cannot be blank, please enter name:\t")
+
 	if username.lower() == CREATOR:
 		print(f"My creator {username}, pleasure to serve you!")
 	else:
 		print(f"Hello {username}, nice to meet you!")
 
 	size = input("\nWhat size do you want? (Small, Medium, Large)\t")
+	while size.lower() not in ("small", "medium", "large"):
+		size = input("\nInvalid size! Enter size: (Small, Medium, Large)")
 
 	price = 0.0
 	if size.lower() == "small":
@@ -19,11 +25,24 @@ def main():
 		price = 17.99
 
 	flavor = input("\nWhat flavor do you want?\t")
-	crust_type = input("\nWhat type of crust do you want?\t")
-	quantity = input("\nHow many do you want? (numeric values only)\t")
-	method = input("\nIs this take-out or for delivery?\t")
 
-	delivery_fee = 5 * (method == "delivery")   #decided to convert this if-else block into a 1-liner
+	while not flavor:
+		flavor = input("\nFlavor cannot be blank! Enter flavor:\t")
+
+	crust_type = input("\nWhat type of crust do you want?\t")
+	while not crust_type:
+		input("Crust type cannot be blank! Enter crust type:\t")
+
+	quantity = input("\nHow many do you want? (numeric values only)\t")
+
+	while not quantity.isdigit():
+		quantity = input("\nInvalid value! How many do you want:\t")
+
+	method = input("\nIs this carry out or for delivery?\t").lower()
+	while method not in ("carry out", "delivery"):
+		method = input("\nInput must be carry out or delivery!\t").lower()
+
+	delivery_fee = 5 * (method == "delivery")  #decided to convert this if-else block into a 1-liner
 	quantity = int(quantity)
 	total = quantity * price * SALES_TAX + delivery_fee
 
