@@ -33,7 +33,7 @@ def main():
 
 		crust_type = input("\nWhat type of crust do you want?\t")
 		while not crust_type:
-			input("Crust type cannot be blank! Enter crust type:\t")
+			crust_type = input("Crust type cannot be blank! Enter crust type:\t")
 
 		quantity = input("\nHow many do you want? (numeric values only)\t")
 
